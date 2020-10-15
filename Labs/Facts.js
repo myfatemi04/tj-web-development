@@ -1,17 +1,4 @@
-const express = require("express")
-const exphbs = require("express-handlebars")
-const app = express()
-
-app.set('view engine', 'hbs')
-app.use('/', express.static('public'))
-
-app.engine('hbs', exphbs({
-    extname: "hbs",
-    helpers: {
-        inc: (value, options) => parseInt(value) + 1,
-        dec: (value, options) => parseInt(value) - 1,
-    }
-}))
+const router = require("express").Router();
 
 let facts = {
     tokyo: [
@@ -46,12 +33,12 @@ let facts = {
     ]
 }
 
-app.get("/", (req, res) => {
-    res.render("index", {layout: false});
+router.get("/", (req, res) => {
+    res.render("facts_home", {layout: false});
 })
 
-app.get("/facts/:thing", (req, res) => {
-    let useJSON = req.query.json
+router.get("/facts/:thing", (req, res) => {
+    let useJSON = req.query.format == "json"
     let thing = req.params.thing
     let thingFacts = []
 
@@ -70,8 +57,8 @@ app.get("/facts/:thing", (req, res) => {
     if (useJSON) {
         res.json(result)
     } else {
-        res.render("facts", {... result, layout: false})
+        res.render("facts_page", {... result, layout: false})
     }
 })
 
-app.listen(process.env.PORT || 3000);
+module.exports = router;
