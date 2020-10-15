@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facts!!</title>
-</head>
-<body>
-    <h1>We found {{ factCount }} facts!</h1>
-    <ol>
-        {{#each facts}}
-            <li>{{{ this }}}</li>
-        {{/each}}
-    </ol>
-    <a href="/facts/{{ thing }}?limit={{ inc factCount }}">Next fact</a>
-    <a href="/facts/{{ thing }}?limit={{ dec factCount }}">Prev fact</a>
-</body>
-</html>
+<h1>We found {{ factCount }} facts!</h1>
+<ol>
+    {{#each facts}}
+        <li>{{{ this }}}</li>
+    {{/each}}
+</ol>
+<a href="?limit={{ inc factCount }}">Next fact</a>
+<a href="?limit={{ dec factCount }}">Prev fact</a>

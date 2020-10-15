@@ -1,0 +1,9 @@
+<h1>Weather Forecase Machine</h1>
+{{#each forecast}}
+    <hr/>
+    {{ this.startTime }}<br/>
+    <b>Temperature: </b>{{ this.temperature }} {{ this.temperatureUnit }}<br/>
+    <b>Wind: </b>{{ this.windSpeed }} {{ this.windDirection }}<br/>
+    <i>{{ this.shortForecast }}</i><br/>
+    <hr/>
+{{/each}}

@@ -34,7 +34,8 @@ let facts = {
 }
 
 router.get("/", (req, res) => {
-    res.render("facts_home", {layout: false});
+    res.locals.title = "Facts!"
+    res.render("facts_home");
 })
 
 router.get("/facts/:thing", (req, res) => {
@@ -57,7 +58,8 @@ router.get("/facts/:thing", (req, res) => {
     if (useJSON) {
         res.json(result)
     } else {
-        res.render("facts_page", {... result, layout: false})
+        res.locals.title = "Facts about " + thing;
+        res.render("facts_page", result);
     }
 })
 

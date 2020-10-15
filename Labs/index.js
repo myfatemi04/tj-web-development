@@ -15,5 +15,11 @@ app.engine('hbs', exphbs({
 
 app.use("/facts", require("./Facts"));
 app.use("/dogcatfish", require("./DogCatFish"));
+app.use("/weather", require("./Weather"));
 
-app.listen(process.env.PORT || 3000);
+app.get("/", (req, res) => {
+    res.locals.title = "Welcome to my website!";
+    res.render("index");
+})
+
+app.listen(process.env.PORT || 3000, () => console.log("Started listening!"));
