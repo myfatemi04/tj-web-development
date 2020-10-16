@@ -13,7 +13,7 @@ function getForecastURL(req, res, next) {
     let { latitude, longitude } = req.query;
 
     if (latitude == null || longitude == null) {
-        res.send("Location Not Found");
+        res.send("Not Found");
     } else {
         https.get(`https://api.weather.gov/points/${latitude},${longitude}`, requestOptions, apiRes => {
             let data = '';
@@ -24,8 +24,12 @@ function getForecastURL(req, res, next) {
                 if (parsed.status) {
                     res.send(parsed.title);
                 } else {
-                    res.locals.url = parsed.properties.forecastHourly;
-                    next()
+                    if (parsed.properties.forecastHourly == null) {
+                        res.send("Not Found: Hourly Forecast URL is null.");
+                    } else {
+                        res.locals.url = parsed.properties.forecastHourly;
+                        next()
+                    }
                 }
             });
         });
