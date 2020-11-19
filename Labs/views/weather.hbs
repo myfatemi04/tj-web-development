@@ -1,9 +1,100 @@
-<h1>Weather Forecase Machine</h1>
-{{#each forecast}}
-    <hr/>
-    {{ this.startTime }}<br/>
-    <b>Temperature: </b>{{ this.temperature }} {{ this.temperatureUnit }}<br/>
-    <b>Wind: </b>{{ this.windSpeed }} {{ this.windDirection }}<br/>
-    <i>{{ this.shortForecast }}</i><br/>
-    <hr/>
-{{/each}}
+<style>
+    .container {
+        width: max(50vw, 800px);
+    }
+    .forecast-box {
+        border: 1px solid rgb(160, 160, 160);
+        border-radius: 5px;
+        margin: 5px;
+        padding: 5px;
+        display: flex;
+    }
+    .location-form {
+        display: inline-block;
+        margin: 10px;
+    }
+    .temperature {
+        font-size: 1.5rem;
+    }
+    .wind {
+        font-size: 1.25rem;
+    }
+    .datetime {
+        font-size: 1.25rem;
+    }
+    .datetime-side {
+        flex: 1;
+        text-align: left;
+    }
+    .weather-side {
+        flex: 2;
+        text-align: left;
+    }
+    .error {
+        background-color: rgb(255, 100, 100);
+        color: white;
+        font-weight: 600;
+        display: inline-block;
+        padding: 10px;
+        border: 1px solid rgb(160, 160, 160);
+        border-radius: 5px;
+    }
+</style>
+<div class="container text-center">
+    <h1>Weather Forecaster</h1>
+    <span>
+        This is a simple weather forecaster!
+    </span><br/>
+    <span>
+        You can type in a latitude and longitude below to get the forecast for that location.
+    </span>
+    <br/>
+    <form method="get" class="location-form form-inline text-left">
+        <input
+            type="number"
+            name="latitude"
+            step="any"
+            class="form-control"
+            placeholder="Latitude"
+            value="{{ latitude }}"
+            required
+            >
+        <input
+            type="number"
+            name="longitude"
+            step="any"
+            class="form-control"
+            placeholder="Longitude"
+            value="{{ longitude }}"
+            required
+            >
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {{#if error}}
+        <br/>
+        <span class="error">
+            ERROR: {{ error }}
+        </span>
+    {{else}}
+        {{#if forecast}}
+            {{#each forecast}}
+                <div class="forecast-box" style="background-color: hsl({{ this.hue }}, 80%, 50%)">
+                    <div class="datetime-side">
+                        <span class="datetime">
+                            {{ this.startTimePretty }}
+                        </span>
+                    </div>
+                    <div class="weather-side">
+                        <span class="temperature">
+                            {{ this.temperature }} {{ this.temperatureUnit }}
+                        </span>
+                        <span class="wind">
+                            {{ this.windSpeed }} {{ this.windDirection }}
+                        </span><br/>
+                        <i>{{ this.shortForecast }} - {{ this.message }}</i>
+                    </div>
+                </div>
+            {{/each}}
+        {{/if}}
+    {{/if}}
+</div>
