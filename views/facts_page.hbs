@@ -1,7 +1,7 @@
 <h1>We found {{ factCount }} facts!</h1>
 <ol>
     {{#each facts}}
-        <li>{{{ this }}}</li>
+    <li>{{{ this }}}</li>
     {{/each}}
 </ol>
 <a href="?limit={{ inc factCount }}">Next fact</a>
