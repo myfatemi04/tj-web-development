@@ -1,92 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+<link rel="stylesheet" href="/css/geography_quiz.css">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Geography Quiz</title>
-	<style>
-		body {
-			margin: 0px;
-			/* width: 100vw;
-			height: 100vh; */
-		}
-
-		#svgWrapper {
-			width: 100vw;
-			display: flex;
-			flex-direction: column;
-		}
-
-		svg {
-			margin: 0px auto;
-		}
-
-		.header {
-			text-align: center;
-		}
-
-		.bar {
-			display: flex;
-			justify-content: center;
-		}
-
-		input {
-			font-size: 2em;
-			margin: 10px;
-		}
-
-		.info {
-			font-size: 2em;
-			margin: 0px 5px;
-		}
-
-		.start-button {
-			display: absolute;
-		}
-	</style>
-</head>
-
-<body>
-	<div class="header">
-		<h1>
-			Geography Quiz
-		</h1>
-		<i>
-			Type your answer in the box below. Try to get all the states in as little time possible!<br />
-			{{ welcomeMessage}} You've visited this page {{ visitCount }} times.
-		</i>
-		<br />
-		<input type="text" id="answer" />
-		<br />
-		<div class="bar">
-			<span class="info" id="proportion">0 / 0</span>
-			<span class="info" id="score">0 points</span>
-			<span class="info" id="timer">00:00:00</span>
-			<button id="control">Start</button>
-		</div>
-		<br />
-		<span>
-			<button onclick="setQuiz('world');">World quiz</button>
-			<button onclick="setQuiz('USA');">USA quiz</button>
-		</span>
+<div class="header">
+	<h1>
+		Geography Quiz
+	</h1>
+	<i>
+		Type your answer in the box below. Try to get all the states in as little time possible!<br />
+		{{ welcomeMessage }} You've visited this page {{ visitCount }} times.
+	</i>
+	<br />
+	<input type="text" id="answer" />
+	<br />
+	<div class="bar">
+		<span class="info" id="proportion">0 / 0</span>
+		<span class="info" id="score">0 points</span>
+		<span class="info" id="timer">00:00:00</span>
+		<button class="btn btn-success" id="control">Start</button>
 	</div>
+	<br />
+	<span>
+		<button class="btn btn-primary" onclick="setQuiz('world');">World quiz</button>
+		<button class="btn btn-primary" onclick="setQuiz('USA');">USA quiz</button>
+	</span>
+</div>
 
-	<div id="svgWrapper" style="filter: blur(1rem)">
-	</div>
+<div id="svgWrapper" style="filter: blur(1rem)">
+</div>
 
-	<script src="/quiz/quiz.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		let quiz = null;
+<script src="/quiz/quiz.js" type="text/javascript"></script>
+<script type="text/javascript">
+	let quiz = null;
 
-		function setQuiz(name) {
-			if (quiz) {
-				quiz.disconnect();
-			}
-
-			quiz = new Quiz("/quiz/" + name + ".json");
+	function setQuiz(name) {
+		if (quiz) {
+			quiz.disconnect();
 		}
-	</script>
-</body>
 
-</html>
+		quiz = new Quiz("/quiz/" + name + ".json");
+	}
+</script>
