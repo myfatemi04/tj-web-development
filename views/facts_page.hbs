@@ -1,8 +1,8 @@
-<h1>We found {{ factCount }} facts!</h1>
+<h1>We found {{ count }} facts!</h1>
 <ol>
     {{#each facts}}
     <li>{{{ this }}}</li>
     {{/each}}
 </ol>
-<a href="?limit={{ inc factCount }}">Next fact</a>
-<a href="?limit={{ dec factCount }}">Prev fact</a>
+<a href="?limit={{ inc count }}">Next fact</a>
+<a href="?limit={{ dec count }}">Prev fact</a>

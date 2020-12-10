@@ -1,0 +1,56 @@
+.container {
+  width: max(50vw, 800px);
+}
+
+.forecast-box {
+  border: 1px solid rgb(160, 160, 160);
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hour {
+  display: flex;
+  align-items: center;
+}
+
+.location-form {
+  display: inline-block;
+  margin: 10px;
+}
+
+.temperature {
+  font-size: 1rem;
+}
+
+.wind {
+  font-size: 1rem;
+}
+
+.datetime {
+  font-weight: bold;
+}
+
+.datetime-side {
+  flex: 1;
+  text-align: right;
+  padding: 10px;
+}
+
+.weather-side {
+  flex: 2;
+  text-align: left;
+  padding: 10px;
+}
+
+.error {
+  background-color: rgb(255, 100, 100);
+  color: white;
+  font-weight: 600;
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid rgb(160, 160, 160);
+  border-radius: 5px;
+}

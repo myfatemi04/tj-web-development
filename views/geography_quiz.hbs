@@ -48,14 +48,13 @@
 </head>
 
 <body>
-
 	<div class="header">
 		<h1>
 			Geography Quiz
 		</h1>
 		<i>
 			Type your answer in the box below. Try to get all the states in as little time possible!<br />
-			You've visited this page {{ visitCount }} times.
+			{{ welcomeMessage}} You've visited this page {{ visitCount }} times.
 		</i>
 		<br />
 		<input type="text" id="answer" />
@@ -68,32 +67,25 @@
 		</div>
 		<br />
 		<span>
-			<a href="#world">World quiz</a>
-			<a href="#USA">USA quiz</a>
+			<button onclick="setQuiz('world');">World quiz</button>
+			<button onclick="setQuiz('USA');">USA quiz</button>
 		</span>
 	</div>
 
 	<div id="svgWrapper" style="filter: blur(1rem)">
 	</div>
 
-	<script src="./quiz.js" type="text/javascript"></script>
+	<script src="/quiz/quiz.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		let quiz = null;
 
-		window.onhashchange = () => {
-			let quizName = "";
-			if (window.location.hash) {
-				quizName = window.location.hash.slice(1);
-			}
-
+		function setQuiz(name) {
 			if (quiz) {
 				quiz.disconnect();
 			}
 
-			quiz = new Quiz("./" + quizName + ".json");
+			quiz = new Quiz("/quiz/" + name + ".json");
 		}
-
-		window.onhashchange();
 	</script>
 </body>
 
