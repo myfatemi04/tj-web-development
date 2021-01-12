@@ -15,6 +15,13 @@
 			<li>
 				<a href="/geography_quiz">50 States map quiz</a>
 			</li>
-			</ol>
+			<li>
+				{{#if isLoggedIn}}
+				<a href="/auth/logout">Log out</a>
+				{{else}}
+				<a href="/auth/ion">Log in with Ion</a>
+				{{/if}}
+			</li>
+		</ul>
 	</div>
 </div>
